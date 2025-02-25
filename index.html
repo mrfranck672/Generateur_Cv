@@ -20,7 +20,7 @@
             <input type="file" id="im" accept="image/*" style="display: none;">
             <button onclick="document.getElementById('im').click()">Choisir une image</button>
             <br>
-           
+
 
 
             <h2> Informations Personnelles </h2>
@@ -28,8 +28,9 @@
             <label> Nom Complet: </label>
             <input type="text" id="nom2" placeholder="Votre nom">
 
+
             <label> Age: </label>
-            <input type="text" id="nom3" placeholder="Votre Sexe">
+            <input type="text" id="nom3" placeholder="Votre Sexe" onchange="verifieAge()">
 
             <label> Titre du poste: </label>
             <input type="text" id="nom4" placeholder="Votre nom">
@@ -49,18 +50,23 @@
 
             <!-- Experiences Pro -->
 
+
             <h2> Experiences Professionnelles </h2>
-            <label> Nom de l'entreprise :</label>
-            <textarea id="experience1" placeholder=" Entrer le nom de l'entreprise "></textarea>
+            <div id="EX">
 
-            <label> Poste occupé: </label>
-            <textarea id="experience2" placeholder=" Poste "></textarea>
+                <label> Nom de l'entreprise :</label>
+                <input type="text" id="experience1" placeholder=" Entrer le nom de l'entreprise "></input>
 
-            <label> Duree d'occupation :</label>
-            <textarea id="experience3" placeholder=" Duree doccupation  "></textarea>
+                <label> Poste occupé: </label>
+                <input id="experience2" type="text" placeholder=" Poste "></input>
 
-            <label> Description du poste :</label>
-            <textarea id="experience4" placeholder=" Entrer une description "></textarea>
+                <label> Duree d'occupation :</label>
+                <input id="experience3" type="text" placeholder=" Duree doccupation  "></input>
+
+                <label> Description du poste :</label>
+                <input id="experience4" type="text" placeholder=" Entrer une description "></input>
+            </div>
+            <button onclick="ajouterChamp()"> Ajouter une experience </button>
 
 
             <!-- Formations -->

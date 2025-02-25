@@ -37,14 +37,15 @@ function genererCV() {
     document.getElementById("cv-lan1").textContent = document.getElementById("l1").value || "Langues maîtrisées";
     document.getElementById("cv-lan2").textContent = document.getElementById("l2").value || "Niveau de maîtrise";
 
-    // image
-
 }
 
+
+// Pdf
 function exporterPDF() {
     let element = document.getElementById('cv');
     html2pdf().from(element).save('CV.pdf');
 }
+
 
 // fonction pour image
 function addEventListener() {
@@ -64,25 +65,38 @@ function addEventListener() {
     });
 }
 
-// function addEventListener() {
-//     const d1 = document.getElementById('d1');
-//     const d2 = document.getElementById('d2');
-//     const d3 = document.getElementById('d3');
 
-//     d2.addEventListener('click', () => {
-//         d1.click();
-//     });
+// verification de l'age
+function verifieAge() {
+``````
+   
+}
 
-//     d1.addEventListener('change', (event) => {
-//         const file = event.target.files[0];
-//         if (file) {
-//             const reader = new FileReader();
-//             reader.onload = function (e) {
-//                 d3.src = e.target.result;
-//             };
-//             reader.readAsDataURL(file);
-//         }
-//     });
+function ajouterChamp() {
+    let container = document.getElementById("EX");
+    let nouvelleExperience = document.createElement("div");
+    nouvelleExperience.classList.add("experience");
 
-// }
+    nouvelleExperience.innerHTML = `
+        <label>Nom de l'entreprise :</label>
+        <input id="experience1" type="text"  placeholder="Entrer le nom de l'entreprise">
 
+        <label>Poste occupé:</label>
+        <input id="experience2" type="text"  placeholder="Poste">
+
+        <label>Durée d'occupation :</label>
+        <input id="experience3" type="text"  placeholder="Durée d'occupation">
+
+        <label>Description du poste :</label>
+        <input id="experience4" type="text"  placeholder="Entrer une description">
+
+        <button class="remove-btn" onclick="supprimerChamp(this)">Supprimer</button>
+    `;
+
+
+    container.appendChild(nouvelleExperience);
+}
+
+function supprimerChamp(button) {
+    button.parentElement.remove();
+}
