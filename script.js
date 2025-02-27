@@ -1,5 +1,8 @@
 function ValiderCV() {
 
+    // Previsualisation du cv
+
+
     //infos Personnelles
     document.getElementById("cv-nom").textContent = document.getElementById("nom2").value || "";
     document.getElementById("cv-nom2").textContent = document.getElementById("nom3").value || "";
@@ -36,6 +39,11 @@ function ValiderCV() {
     document.getElementById("cv-lan1").textContent = document.getElementById("l1").value || "";
     document.getElementById("cv-lan2").textContent = document.getElementById("l2").value || "";
 
+    // var lang = document.getElementById('cv-lan1');
+    // lang.addEventListener('input', function () {
+    //     previewlang.textContent = "Langue :" + this.value;
+    // });
+
 
     // Verifier que les champs ne sont pas vide
 
@@ -62,10 +70,19 @@ function ValiderCV() {
 
 // Pdf
 
-// function exporterPDF() {
-//     let CV = document.getElementById('cv');
-//     html5pdf().from(CV).save('CV.pdf');
-// }
+function exporterPDF() {
+    const content = document.getElementById("CVP").innerHTML;  // Récupère le contenu de la div
+    // Ouvre une nouvelle fenêtre
+    const pdf3 = window.open('', '', 'height=1700,width=900');
+    // Écrit le contenu dans la fenêtre de l'impression
+    pdf3.document.write('<html><head><title> CV-pdf </title></head><body>');
+    pdf3.document.write(content);  // Écrit le contenu HTML de la div dans le document de la fenêtre
+    pdf3.document.write('CVP>');
+    // Fermeture du document et lancement de l'impression
+    pdf3.document.close();
+    pdf3.print();  // Lancement de l'impression
+
+}
 
 
 
@@ -176,16 +193,15 @@ function newChamp3() {
     container.appendChild(newRef);
 }
 
-
 // Fonction pour supprimer les champs ajouter
 function supprimerChamp(button) {
     button.parentElement.remove();
 }
 
-
 // Fonction pour sauvegarder les données dans le localStorage
 function saveData() {
     const formData = {
+        // Choisiruneimage: document.getElementById("im").value,
         nomComplet: document.getElementById("nom2").value,
         age: document.getElementById("nom3").value,
         titrePoste: document.getElementById("nom4").value,
@@ -265,13 +281,7 @@ function chargerDonnees() {
     }
 }
 
-// Fonction pour effacer les données du localStorage
-function effacerDonnees() {
-    localStorage.removeItem("formCV");
-    alert(" Données supprimées avec succes ");
-    location.reload();
-}
-
 // Charger les données automatiquement au chargement de la page
 document.addEventListener("DOMContentLoaded", chargerDonnees);
+
 
