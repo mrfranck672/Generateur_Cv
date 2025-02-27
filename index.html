@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Générer votre CV rapidement </title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html5pdf.js/0.10.1/html5pdf.bundle.min.js"></script> -->
     <script src="script.js"></script>
     <link href="./output.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -15,6 +15,7 @@
     <h1>Générateur de CV</h1>
 
     <div class="container">
+        <!-- Editeur de cv -->
         <div id="V12" class="form-section">
             <!-- Info personnelles -->
             <input type="file" id="im" accept="image/*" style="display: none;">
@@ -131,13 +132,13 @@
             <label> Niveau de compétence: </label>
             <textarea id="l2" placeholder=" Entrer le nom de l'entreprise "></textarea>
 
-            <button onclick="ValiderCV()" onclick="VerifET()" onclick="saveData()">Générer CV</button>
-            <button onclick="exporterPDF()">Télécharger PDF</button>
+            <button onclick="ValiderCV()" onclick="saveData()">Générer CV</button>
+            <!-- <button onclick="exporterPDF()"> exporter en PDF </button> -->
         </div>
 
 
 
-        <!-- Affichons le cv -->
+        <!-- Affichons mon cv -->
 
         <div class="cv-section max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg">
 
@@ -160,7 +161,7 @@
             <hr class="my-4 border-gray-300">
 
             <!-- Expériences Professionnelles -->
-            <h2 class="text-xl font-semibold text-blue-600">Expériences Professionnelles</h2>
+            <h2 class="text-2xl font-bold text-center text-blue-600 mt-4">Expériences Professionnelles</h2>
             <div class="mt-2 space-y-2 text-gray-700">
                 <p><strong>Nom de l'entreprise:</strong> <span id="cv-experience1"></span></p>
                 <p><strong>Poste occupé:</strong> <span id="cv-experience2"></span></p>
@@ -171,7 +172,7 @@
             <hr class="my-4 border-gray-300">
 
             <!-- Formation -->
-            <h2 class="text-xl font-semibold text-blue-600">Formation</h2>
+            <h2 class="text-2xl font-bold text-center text-blue-600 mt-4">Formation</h2>
             <div class="mt-2 space-y-2 text-gray-700">
                 <p><strong>Diplôme obtenu:</strong> <span id="cv-formation1"></span></p>
                 <p><strong>Nom de l'établissement:</strong> <span id="cv-formation2"></span></p>
@@ -181,20 +182,20 @@
             <hr class="my-4 border-gray-300">
 
             <!-- Compétences -->
-            <h2 class="text-xl font-semibold text-blue-600">Compétences</h2>
+            <h2 class="text-2xl font-bold text-center text-blue-600 mt-4">Compétences</h2>
             <p id="cv-competences" class="mt-2 text-gray-700"></p>
 
             <hr class="my-4 border-gray-300">
 
             <!-- Centre d'intérêt -->
-            <h2 class="text-xl font-semibold text-blue-600">Centres d'intérêt</h2>
+            <h2 class="text-2xl font-bold text-center text-blue-600 mt-4">Centres d'intérêt</h2>
             <p><strong>Loisirs:</strong> <span id="cv-interet1"></span></p>
             <p><strong>Passions:</strong> <span id="cv-interet2"></span></p>
 
             <hr class="my-4 border-gray-300">
 
             <!-- Références -->
-            <h2 class="text-xl font-semibold text-blue-600">Références</h2>
+            <h2 class="text-2xl font-bold text-center text-blue-600 mt-4">Références</h2>
             <div class="mt-2 space-y-2 text-gray-700">
                 <p><strong>Nom de la référence:</strong> <span id="cv-ref1"></span></p>
                 <p><strong>Poste de la référence:</strong> <span id="cv-ref2"></span></p>
@@ -204,7 +205,7 @@
             <hr class="my-4 border-gray-300">
 
             <!-- Langues -->
-            <h2 class="text-xl font-semibold text-blue-600">Langues</h2>
+            <h2 class="text-2xl font-bold text-center text-blue-600 mt-4">Langues</h2>
             <p><strong>Langues maîtrisées:</strong> <span id="cv-lan1"></span></p>
             <p><strong>Niveau de maîtrise:</strong> <span id="cv-lan2"></span></p>
 

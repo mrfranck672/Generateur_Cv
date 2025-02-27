@@ -58,41 +58,14 @@ function ValiderCV() {
     return true;
 }
 
-// S'assurer que les champs ne soient pas vides
-function VerifET() {
-    let email = document.getElementById("nom7");
-    let telephone = document.getElementById("nom8");
-    let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    let telephonePattern = /^[0-9]{8,15}$/; // Accepte de 8 à 15 chiffres
-
-    let valide = true;
-
-    // Vérification email
-    if (!emailPattern.test(email.value.trim())) {
-        alert("Veuillez entrer un email valide !");
-        email.style.border = "2px solid red";
-        valide = false;
-    } else {
-        email.style.border = "1px solid #ccc";
-    }
-
-    // Vérification téléphone
-    if (!telephonePattern.test(telephone.value.trim())) {
-        alert("Veuillez entrer un numéro de téléphone valide (8 à 15 chiffres) !");
-        telephone.style.border = "2px solid red";
-        valide = false;
-    } else {
-        telephone.style.border = "1px solid #ccc";
-    }
-
-    return valide;
-}
-
 // Pdf
-function exporterPDF() {
-    let CV = document.getElementById('cv');
-    html5pdf().from(CV).save('CV.pdf');
-}
+
+// function exporterPDF() {
+//     let CV = document.getElementById('cv');
+//     html5pdf().from(CV).save('CV.pdf');
+// }
+
+
 
 // fonction pour image
 function addEventListener() {
@@ -105,7 +78,7 @@ function addEventListener() {
             reader.onload = function (e) {
                 let img = document.getElementById("image");
                 img.src = e.target.result;
-                img.style.display = "block"; // Afficher l'image
+                img.style.display = "block";
             }
             reader.readAsDataURL(file);
         }
@@ -201,7 +174,8 @@ function newChamp3() {
     container.appendChild(newRef);
 }
 
-// Fonction pour supprimer les champs
+
+// Fonction pour supprimer les champs ajouter
 function supprimerChamp(button) {
     button.parentElement.remove();
 }
@@ -248,7 +222,7 @@ function saveData() {
 
     // Sauvegarde dans le localStorage
     localStorage.setItem("formCV", JSON.stringify(formData));
-    alert("Données sauvegardées !");
+    alert(" Données sauvegardées ");
 }
 
 // Fonction pour charger les données sauvegardées
@@ -292,8 +266,8 @@ function chargerDonnees() {
 // Fonction pour effacer les données du localStorage
 function effacerDonnees() {
     localStorage.removeItem("formCV");
-    alert("Données supprimées !");
-    location.reload(); // Recharger la page pour vider les champs
+    alert(" Données supprimées avec succes ");
+    location.reload();
 }
 
 // Charger les données automatiquement au chargement de la page
