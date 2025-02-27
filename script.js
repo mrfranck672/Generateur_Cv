@@ -37,6 +37,11 @@ function ValiderCV() {
     document.getElementById("cv-lan2").textContent = document.getElementById("l2").value || "";
 
 
+<<<<<<< HEAD
+=======
+    // Verifier que les champs ne sont pas vide
+
+>>>>>>> abac8fface9ba17f7b99c03a82c0050068f7259b
     let champs = document.querySelectorAll("#V12 input, #V12 textarea");
     let champsVides = [];
 
@@ -60,6 +65,7 @@ function ValiderCV() {
 
 // Pdf
 
+<<<<<<< HEAD
 function exporterPDF() {
     const content = document.getElementById("CVP").innerHTML;  // Récupère le contenu de la div
     // Ouvre une nouvelle fenêtre
@@ -85,6 +91,13 @@ function exporterPDF() {
     pdf3.print();  // Lancement de l'impression
 
 }
+=======
+// function exporterPDF() {
+//     let CV = document.getElementById('cv');
+//     html5pdf().from(CV).save('CV.pdf');
+// }
+
+>>>>>>> abac8fface9ba17f7b99c03a82c0050068f7259b
 
 
 // fonction pour image
