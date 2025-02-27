@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Générateur de CV </title>
+    <title> Générer votre CV rapidement </title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="script.js"></script>
-    <!-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> -->
+    <link href="./output.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,15 +15,13 @@
     <h1>Générateur de CV</h1>
 
     <div class="container">
-        <div class="form-section">
+        <div id="V12" class="form-section">
             <!-- Info personnelles -->
             <input type="file" id="im" accept="image/*" style="display: none;">
             <button onclick="document.getElementById('im').click()">Choisir une image</button>
             <br>
 
-
-
-            <h2> Informations Personnelles </h2>
+            <h2 class="text-2xl"> Informations Personnelles </h2><br>
 
             <label> Nom Complet: </label>
             <input type="text" id="nom2" placeholder="Votre nom">
@@ -46,12 +44,13 @@
 
             <label>Téléphone :</label>
             <input type="number" id="nom8" placeholder="Votre téléphone">
+            <br>
 
 
             <!-- Experiences Pro -->
 
 
-            <h2> Experiences Professionnelles </h2>
+            <h2 class="text-2xl"> Experiences Professionnelles </h2>
             <div id="EX">
 
                 <label> Nom de l'entreprise :</label>
@@ -66,31 +65,40 @@
                 <label> Description du poste :</label>
                 <input id="experience4" type="text" placeholder=" Entrer une description "></input>
             </div>
-            <button onclick="ajouterChamp()"> Ajouter une experience </button>
+            <button onclick="newChamp()"> Ajouter une experience </button>
+            <br>
 
 
             <!-- Formations -->
 
-            <h2> Formations </h2>
-            <label> diplome obtenu: </label>
-            <textarea id="formation1" placeholder=" Nom du diplome "></textarea>
+            <h2 class="text-2xl"> Formations </h2>
+            <div id="B3">
 
-            <label> Nom de l'etablissement :</label>
-            <textarea id="formation2" placeholder=" Entrer le nom de l'etablissement "></textarea>
+                <label> diplome obtenu: </label>
+                <textarea id="formation1" placeholder=" Nom du diplome "></textarea>
 
-            <label> Annee d'obtention: </label>
-            <textarea id="formation3" placeholder=" Annee "></textarea>
+                <label> Nom de l'etablissement :</label>
+                <textarea id="formation2" placeholder=" Entrer le nom de l'etablissement "></textarea>
+
+                <label> Annee d'obtention: </label>
+                <textarea id="formation3" placeholder=" Annee "></textarea>
+            </div>
+            <button onclick="newChamp1()"> Ajouter une formation </button>
 
 
             <!-- Competences -->
 
-            <h2> Competences </h2>
-            <label> Compétences :</label>
-            <textarea id="competences" placeholder="Listez vos compétences"></textarea>
+            <h2 class="text-2xl"> Competences </h2>
+            <div id="C18">
+                <label> Compétences :</label>
+                <textarea id="competences" placeholder="Listez vos compétences"></textarea>
+            </div>
+
+            <button onclick="newChamp2()"> Nouvelles Compétences </button>
 
             <!-- centre d'interet -->
 
-            <h2> Centre d'intérêt </h2>
+            <h2 class="text-2xl"> Centre d'intérêt </h2>
             <label> loisir: </label>
             <textarea id="interet1" placeholder=" listez vos loisir "></textarea>
             <label> passions: </label>
@@ -100,77 +108,108 @@
 
             <!-- References -->
 
-            <h2> Reférences </h2>
-            <label> Nom de la References:</label>
-            <textarea id="ref1" placeholder=" Entrer le nom de la References"></textarea>
+            <h2 class="text-2xl"> Reférences </h2>
+            <div id="C17">
+                <label> Nom de la References:</label>
+                <textarea id="ref1" placeholder=" Entrer le nom de la References"></textarea>
 
-            <label> Poste de la reference: </label>
-            <textarea id="ref2" placeholder=" Entrer le poste"></textarea>
+                <label> Poste de la reference: </label>
+                <textarea id="ref2" placeholder=" Entrer le poste"></textarea>
 
-            <label> Contact de la reference: </label>
-            <textarea id="ref3" placeholder=" contact "></textarea>
+                <label> Contact de la reference: </label>
+                <textarea id="ref3" placeholder=" contact "></textarea>
+            </div>
+
+            <button onclick="newChamp3()"> Ajouter une Reférence </button>
 
             <!-- Langues -->
 
-            <h2> Langues </h2>
+            <h2 class="text-2xl"> Langues </h2>
             <label> Langues maîtrisées: </label>
             <textarea id="l1" placeholder=" Entrer une langue "></textarea>
 
             <label> Niveau de compétence: </label>
             <textarea id="l2" placeholder=" Entrer le nom de l'entreprise "></textarea>
 
-            <button onclick="genererCV()">Générer CV</button>
+            <button onclick="ValiderCV()" onclick="VerifET()" onclick="saveData()">Générer CV</button>
             <button onclick="exporterPDF()">Télécharger PDF</button>
         </div>
 
-        <div class="cv-section" id="cv">
 
-            <!-- afficher Info personnelles -->
-            <img id="image" alt="Profil">
 
-            <h2 id="cv-nom"> Nom Complet </h2>
-            <p><strong> Age: </strong> <span id="cv-nom2"></span></p>
-            <p><strong> Titre du poste: </strong> <span id="cv-nom3"></span></p>
-            <p><strong> Situation actuelle: </strong> <span id="cv-nom4"></span></p>
-            <p><strong> Sexe: </strong> <span id="cv-nom5"></span></p>
-            <p><strong> Email: </strong> <span id="cv-nom6"></span></p>
-            <p><strong> Téléphone: </strong> <span id="cv-nom7"></span></p> <br>
+        <!-- Affichons le cv -->
 
-            <!-- afficher Experiences Professionnelles -->
-            <h2> Experiences Professionnelles </h2>
+        <div class="cv-section max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg">
 
-            <p><strong> Nom de l'entreprise: </strong> <span id="cv-experience1"></span></p>
-            <p><strong> Poste occupé: </strong> <span id="cv-experience2"></span></p>
-            <p><strong> Duree d'occupation: </strong> <span id="cv-experience3"></span></p>
-            <P><strong> Description du poste: </strong> <span id="cv-experience4"></span></P><br>
+            <!-- Image de profil -->
+            <div class="flex justify-center">
+                <img id="image" alt="Profil" class="w-32 h-32 object-cover rounded-full border-4 border-blue-500">
+            </div>
 
-            <!-- afficher formations -->
-            <h2> Formation </h2>
-            <p><strong> diplome obtenu: </strong> <span id="cv-formation1"></span></p>
-            <p><strong> Nom de l'etablissement: </strong> <span id="cv-formation2"></span></p>
-            <p><strong> Annee d'obtention </strong> <span id="cv-formation3"></span></p> <br>
+            <h2 id="cv-nom" class="text-2xl font-bold text-center text-blue-600 mt-4">Nom Complet</h2>
 
-            <!-- afficher Competences -->
-            <h2> Compétences </h2>
-            <p id="cv-competences"></p> <br>
+            <div class="mt-4 space-y-2 text-gray-700">
+                <p><strong>Age:</strong> <span id="cv-nom2"></span></p>
+                <p><strong>Titre du poste:</strong> <span id="cv-nom3"></span></p>
+                <p><strong>Situation actuelle:</strong> <span id="cv-nom4"></span></p>
+                <p><strong>Sexe:</strong> <span id="cv-nom5"></span></p>
+                <p><strong>Email:</strong> <span id="cv-nom6"></span></p>
+                <p><strong>Téléphone:</strong> <span id="cv-nom7"></span></p>
+            </div>
 
-            <!-- centre d'interet -->
-            <h2> Centre d'interet </h2>
-            <p> <strong> Loisir </strong> <span id="cv-interet1"> </span> </p>
-            <p> <strong> Passions </strong> <span id="cv-interet2"> </span></p> <br>
+            <hr class="my-4 border-gray-300">
 
-            <!-- afficher REferences -->
-            <h2> Reférences </h2>
-            <p><strong> Nom de la References: </strong> <span id="cv-ref1"></span></p>
-            <p><strong> Poste de la reference: </strong> <span id="cv-ref2"></span></p>
-            <p><strong> Contact de la reference: </strong> <span id="cv-ref3"></span></p> <br>
+            <!-- Expériences Professionnelles -->
+            <h2 class="text-xl font-semibold text-blue-600">Expériences Professionnelles</h2>
+            <div class="mt-2 space-y-2 text-gray-700">
+                <p><strong>Nom de l'entreprise:</strong> <span id="cv-experience1"></span></p>
+                <p><strong>Poste occupé:</strong> <span id="cv-experience2"></span></p>
+                <p><strong>Durée d'occupation:</strong> <span id="cv-experience3"></span></p>
+                <p><strong>Description du poste:</strong> <span id="cv-experience4"></span></p>
+            </div>
 
-            <!-- afficher langue -->
-            <h2> Langues </h2>
-            <p> <strong> Langues maîtrisées </strong> <span id="cv-lan1"> </span> </p>
-            <p> <strong> Niveau de maîtrise </strong> <span id="cv-lan2"> </span></p>
+            <hr class="my-4 border-gray-300">
+
+            <!-- Formation -->
+            <h2 class="text-xl font-semibold text-blue-600">Formation</h2>
+            <div class="mt-2 space-y-2 text-gray-700">
+                <p><strong>Diplôme obtenu:</strong> <span id="cv-formation1"></span></p>
+                <p><strong>Nom de l'établissement:</strong> <span id="cv-formation2"></span></p>
+                <p><strong>Année d'obtention:</strong> <span id="cv-formation3"></span></p>
+            </div>
+
+            <hr class="my-4 border-gray-300">
+
+            <!-- Compétences -->
+            <h2 class="text-xl font-semibold text-blue-600">Compétences</h2>
+            <p id="cv-competences" class="mt-2 text-gray-700"></p>
+
+            <hr class="my-4 border-gray-300">
+
+            <!-- Centre d'intérêt -->
+            <h2 class="text-xl font-semibold text-blue-600">Centres d'intérêt</h2>
+            <p><strong>Loisirs:</strong> <span id="cv-interet1"></span></p>
+            <p><strong>Passions:</strong> <span id="cv-interet2"></span></p>
+
+            <hr class="my-4 border-gray-300">
+
+            <!-- Références -->
+            <h2 class="text-xl font-semibold text-blue-600">Références</h2>
+            <div class="mt-2 space-y-2 text-gray-700">
+                <p><strong>Nom de la référence:</strong> <span id="cv-ref1"></span></p>
+                <p><strong>Poste de la référence:</strong> <span id="cv-ref2"></span></p>
+                <p><strong>Contact de la référence:</strong> <span id="cv-ref3"></span></p>
+            </div>
+
+            <hr class="my-4 border-gray-300">
+
+            <!-- Langues -->
+            <h2 class="text-xl font-semibold text-blue-600">Langues</h2>
+            <p><strong>Langues maîtrisées:</strong> <span id="cv-lan1"></span></p>
+            <p><strong>Niveau de maîtrise:</strong> <span id="cv-lan2"></span></p>
 
         </div>
+
     </div>
 
 </body>

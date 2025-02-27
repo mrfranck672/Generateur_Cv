@@ -1,51 +1,98 @@
-function genererCV() {
+function ValiderCV() {
+
     //infos Personnelles
-    document.getElementById("cv-nom").textContent = document.getElementById("nom2").value || "Nom Complet";
-    document.getElementById("cv-nom2").textContent = document.getElementById("nom3").value || "Age";
-    document.getElementById("cv-nom3").textContent = document.getElementById("nom4").value || "Titre du poste";
-    document.getElementById("cv-nom4").textContent = document.getElementById("nom5").value || "Situation actuelle";
-    document.getElementById("cv-nom5").textContent = document.getElementById("nom6").value || "Sexe";
-    document.getElementById("cv-nom6").textContent = document.getElementById("nom7").value || "Email";
-    document.getElementById("cv-nom7").textContent = document.getElementById("nom8").value || "Telephone";
+    document.getElementById("cv-nom").textContent = document.getElementById("nom2").value || "";
+    document.getElementById("cv-nom2").textContent = document.getElementById("nom3").value || "";
+    document.getElementById("cv-nom3").textContent = document.getElementById("nom4").value || "";
+    document.getElementById("cv-nom4").textContent = document.getElementById("nom5").value || "";
+    document.getElementById("cv-nom5").textContent = document.getElementById("nom6").value || "";
+    document.getElementById("cv-nom6").textContent = document.getElementById("nom7").value || "";
+    document.getElementById("cv-nom7").textContent = document.getElementById("nom8").value || "";
 
     // Experiences Pro
-    document.getElementById("cv-experience1").textContent = document.getElementById("experience1").value || "Nom de l'entreprise";
-    document.getElementById("cv-experience2").textContent = document.getElementById("experience2").value || "Poste occupé";
-    document.getElementById("cv-experience3").textContent = document.getElementById("experience3").value || "Duree d'occupation";
-    document.getElementById("cv-experience4").textContent = document.getElementById("experience4").value || "Description du poste";
-
+    document.getElementById("cv-experience1").textContent = document.getElementById("experience1").value || "";
+    document.getElementById("cv-experience2").textContent = document.getElementById("experience2").value || "";
+    document.getElementById("cv-experience3").textContent = document.getElementById("experience3").value || "";
+    document.getElementById("cv-experience4").textContent = document.getElementById("experience4").value || "";
 
     // formations
-
-    document.getElementById("cv-formation1").textContent = document.getElementById("formation1").value || "diplome obtenu";
-    document.getElementById("cv-formation2").textContent = document.getElementById("formation2").value || "Nom de l'etablissement";
-    document.getElementById("cv-formation3").textContent = document.getElementById("formation3").value || "Annee d'obtention";
+    document.getElementById("cv-formation1").textContent = document.getElementById("formation1").value || "";
+    document.getElementById("cv-formation2").textContent = document.getElementById("formation2").value || "";
+    document.getElementById("cv-formation3").textContent = document.getElementById("formation3").value || "";
 
     // Competences
-    document.getElementById("cv-competences").textContent = document.getElementById("competences").value || "Compétences";
+    document.getElementById("cv-competences").textContent = document.getElementById("competences").value || "";
 
     // interets
-    document.getElementById("cv-interet1").textContent = document.getElementById("interet1").value || "loisir";
-    document.getElementById("cv-interet2").textContent = document.getElementById("interet1").value || "passions";
+    document.getElementById("cv-interet1").textContent = document.getElementById("interet1").value || "";
+    document.getElementById("cv-interet2").textContent = document.getElementById("interet1").value || "";
 
     //  REferences
-    document.getElementById("cv-ref1").textContent = document.getElementById("ref1").value || "Nom de la References";
-    document.getElementById("cv-ref2").textContent = document.getElementById("ref2").value || "Poste de la reference";
-    document.getElementById("cv-ref3").textContent = document.getElementById("ref3").value || "Contact de la reference";
+    document.getElementById("cv-ref1").textContent = document.getElementById("ref1").value || "";
+    document.getElementById("cv-ref2").textContent = document.getElementById("ref2").value || "";
+    document.getElementById("cv-ref3").textContent = document.getElementById("ref3").value || "";
 
     // langue
-    document.getElementById("cv-lan1").textContent = document.getElementById("l1").value || "Langues maîtrisées";
-    document.getElementById("cv-lan2").textContent = document.getElementById("l2").value || "Niveau de maîtrise";
+    document.getElementById("cv-lan1").textContent = document.getElementById("l1").value || "";
+    document.getElementById("cv-lan2").textContent = document.getElementById("l2").value || "";
 
+
+    let champs = document.querySelectorAll("#V12 input, #V12 textarea");
+    let champsVides = [];
+
+    champs.forEach(champ => {
+        if (champ.value.trim() === "") {
+            champsVides.push(champ);
+            champ.style.border = "2px solid red";
+        } else {
+            champ.style.border = "1px solid #ccc";
+        }
+    });
+
+    if (champsVides.length > 0) {
+        alert("  Veuillez remplir tous les champs Correctement  ");
+        return false;
+    }
+
+    alert(" Votre CV est a jour ! ");
+    return true;
 }
 
+// S'assurer que les champs ne soient pas vides
+function VerifET() {
+    let email = document.getElementById("nom7");
+    let telephone = document.getElementById("nom8");
+    let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    let telephonePattern = /^[0-9]{8,15}$/; // Accepte de 8 à 15 chiffres
+
+    let valide = true;
+
+    // Vérification email
+    if (!emailPattern.test(email.value.trim())) {
+        alert("Veuillez entrer un email valide !");
+        email.style.border = "2px solid red";
+        valide = false;
+    } else {
+        email.style.border = "1px solid #ccc";
+    }
+
+    // Vérification téléphone
+    if (!telephonePattern.test(telephone.value.trim())) {
+        alert("Veuillez entrer un numéro de téléphone valide (8 à 15 chiffres) !");
+        telephone.style.border = "2px solid red";
+        valide = false;
+    } else {
+        telephone.style.border = "1px solid #ccc";
+    }
+
+    return valide;
+}
 
 // Pdf
 function exporterPDF() {
-    let element = document.getElementById('cv');
-    html2pdf().from(element).save('CV.pdf');
+    let CV = document.getElementById('cv');
+    html5pdf().from(CV).save('CV.pdf');
 }
-
 
 // fonction pour image
 function addEventListener() {
@@ -65,14 +112,16 @@ function addEventListener() {
     });
 }
 
-
 // verification de l'age
 function verifieAge() {
-``````
-   
+
+
 }
 
-function ajouterChamp() {
+// Fonctions pour ajouter de nouveaux elements
+
+// experiences
+function newChamp() {
     let container = document.getElementById("EX");
     let nouvelleExperience = document.createElement("div");
     nouvelleExperience.classList.add("experience");
@@ -92,11 +141,161 @@ function ajouterChamp() {
 
         <button class="remove-btn" onclick="supprimerChamp(this)">Supprimer</button>
     `;
-
-
     container.appendChild(nouvelleExperience);
 }
 
+// formations
+function newChamp1() {
+    let container = document.getElementById("B3");
+    let nouvelleFormations = document.createElement("div");
+    nouvelleFormations.classList.add("formation");
+
+    nouvelleFormations.innerHTML = `
+        <label> diplome obtenu: </label>
+                <textarea id="formation1" placeholder=" Nom du diplome "></textarea>
+
+                <label> Nom de l'etablissement :</label>
+                <textarea id="formation2" placeholder=" Entrer le nom de l'etablissement "></textarea>
+
+                <label> Annee d'obtention: </label>
+                <textarea id="formation3" placeholder=" Annee "></textarea>
+
+        <button class="remove-btn" onclick="supprimerChamp(this)">Supprimer</button>
+    `;
+    container.appendChild(nouvelleFormations);
+}
+
+// Competences
+function newChamp2() {
+    let container = document.getElementById("C18");
+    let newComp = document.createElement("div");
+    newComp.classList.add("Competences");
+
+    newComp.innerHTML = `
+    <label> Compétences :</label>
+     <textarea id="competences" placeholder="Listez vos compétences"></textarea>
+
+        <button class="remove-btn" onclick="supprimerChamp(this)">Supprimer</button>
+    `;
+    container.appendChild(newComp);
+    saveData();
+}
+
+// References
+function newChamp3() {
+    let container = document.getElementById("C17");
+    let newRef = document.createElement("div");
+    newRef.classList.add("Reference");
+
+    newRef.innerHTML = `
+    <label> Nom de la References:</label>
+                <textarea id="ref1" placeholder=" Entrer le nom de la References"></textarea>
+
+                <label> Poste de la reference: </label>
+                <textarea id="ref2" placeholder=" Entrer le poste"></textarea>
+
+                <label> Contact de la reference: </label>
+                <textarea id="ref3" placeholder=" contact "></textarea>
+        <button class="remove-btn" onclick="supprimerChamp(this)">Supprimer</button>
+    `;
+    container.appendChild(newRef);
+}
+
+// Fonction pour supprimer les champs
 function supprimerChamp(button) {
     button.parentElement.remove();
 }
+
+
+// Fonction pour sauvegarder les données dans le localStorage
+function saveData() {
+    const formData = {
+        nomComplet: document.getElementById("nom2").value,
+        age: document.getElementById("nom3").value,
+        titrePoste: document.getElementById("nom4").value,
+        situation: document.getElementById("nom5").value,
+        sexe: document.getElementById("nom6").value,
+        email: document.getElementById("nom7").value,
+        telephone: document.getElementById("nom8").value,
+        experience: {
+            entreprise: document.getElementById("experience1").value,
+            poste: document.getElementById("experience2").value,
+            duree: document.getElementById("experience3").value,
+            description: document.getElementById("experience4").value
+        },
+        formation: {
+            diplome: document.getElementById("formation1").value,
+            etablissement: document.getElementById("formation2").value,
+            annee: document.getElementById("formation3").value
+        },
+        competences: document.getElementById("competences").value,
+        interets: {
+            loisir: document.getElementById("interet1").value,
+            passions: document.getElementById("interet2").value
+        },
+        references: {
+            nom: document.getElementById("ref1").value,
+            poste: document.getElementById("ref2").value,
+            contact: document.getElementById("ref3").value
+        },
+        langues: {
+            langue: document.getElementById("l1").value,
+            niveau: document.getElementById("l2").value
+        },
+
+
+    };
+
+    // Sauvegarde dans le localStorage
+    localStorage.setItem("formCV", JSON.stringify(formData));
+    alert("Données sauvegardées !");
+}
+
+// Fonction pour charger les données sauvegardées
+function chargerDonnees() {
+    const storedData = localStorage.getItem("formCV");
+
+    if (storedData) {
+        const formData = JSON.parse(storedData);
+
+        document.getElementById("nom2").value = formData.nomComplet || "";
+        document.getElementById("nom3").value = formData.age || "";
+        document.getElementById("nom4").value = formData.titrePoste || "";
+        document.getElementById("nom5").value = formData.situation || "";
+        document.getElementById("nom6").value = formData.sexe || "";
+        document.getElementById("nom7").value = formData.email || "";
+        document.getElementById("nom8").value = formData.telephone || "";
+
+        document.getElementById("experience1").value = formData.experience.entreprise || "";
+        document.getElementById("experience2").value = formData.experience.poste || "";
+        document.getElementById("experience3").value = formData.experience.duree || "";
+        document.getElementById("experience4").value = formData.experience.description || "";
+
+        document.getElementById("formation1").value = formData.formation.diplome || "";
+        document.getElementById("formation2").value = formData.formation.etablissement || "";
+        document.getElementById("formation3").value = formData.formation.annee || "";
+
+        document.getElementById("competences").value = formData.competences || "";
+
+        document.getElementById("interet1").value = formData.interets.loisir || "";
+        document.getElementById("interet2").value = formData.interets.passions || "";
+
+        document.getElementById("ref1").value = formData.references.nom || "";
+        document.getElementById("ref2").value = formData.references.poste || "";
+        document.getElementById("ref3").value = formData.references.contact || "";
+
+        document.getElementById("l1").value = formData.langues.langue || "";
+        document.getElementById("l2").value = formData.langues.niveau || "";
+    }
+}
+
+// Fonction pour effacer les données du localStorage
+function effacerDonnees() {
+    localStorage.removeItem("formCV");
+    alert("Données supprimées !");
+    location.reload(); // Recharger la page pour vider les champs
+}
+
+// Charger les données automatiquement au chargement de la page
+document.addEventListener("DOMContentLoaded", chargerDonnees);
+
