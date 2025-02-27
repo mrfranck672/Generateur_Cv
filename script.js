@@ -37,6 +37,8 @@ function ValiderCV() {
     document.getElementById("cv-lan2").textContent = document.getElementById("l2").value || "";
 
 
+    // Verifier que les champs ne sont pas vide
+
     let champs = document.querySelectorAll("#V12 input, #V12 textarea");
     let champsVides = [];
 
